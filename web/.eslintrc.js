@@ -1,13 +1,37 @@
 module.exports = {
-  extends: ['standard', 'standard-react', 'plugin:import/errors', 'plugin:import/warnings'],
-  rules: {
-    'react/prop-types': 0,
-    'object-curly-spacing': ['error', 'never']
+  parser: `@typescript-eslint/parser`,
+  extends: [
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
+  ],
+  plugins: ["@typescript-eslint", "prettier"],
+  parserOptions: {
+    ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
+    sourceType: "module", // Allows for the use of imports
   },
-  settings: {
-    react: {
-      pragma: 'React',
-      version: '16.8.4'
-    }
-  }
-}
+  env: {
+    browser: true,
+    node: true,
+  },
+  rules: {
+    quotes: "off",
+    "@typescript-eslint/quotes": [
+      2,
+      "backtick",
+      {
+        avoidEscape: true,
+      },
+    ],
+    indent: ["error", 2, { SwitchCase: 1 }],
+    "prettier/prettier": [
+      "error",
+      {
+        trailingComma: "es5",
+        semi: false,
+        singleQuote: false,
+        printWidth: 120,
+      },
+    ],
+  },
+};
